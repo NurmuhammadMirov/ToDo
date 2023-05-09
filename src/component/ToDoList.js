@@ -4,6 +4,10 @@ import { Table } from 'react-bootstrap';
 
 const ToDoList = () => {
     const {state, dispatch} = React.useContext(TodosContext);
+
+    const handleDelete = (todo) => {
+        dispatch({ type: 'delete', payload: todo });
+    }
     return (
         <div>
             <Table striped bordered hover>
@@ -19,7 +23,9 @@ const ToDoList = () => {
                         <tr key={todo.id}>
                             <td>{todo.text}</td>
                             <td>Edit</td>
-                            <td>Delete</td>
+                            <td onClick={() => handleDelete(todo)}>
+                                Delete
+                            </td>
                         </tr>
                     ))}
                 </tbody>

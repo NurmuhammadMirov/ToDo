@@ -12,6 +12,9 @@ const todosInitialState = {
 
 const todosReducer = (state, action) => {
     switch(action.type) {
+        case 'delete':
+            const filteredTodoState = state.todos.filter(todo => todo.id !== action.payload.id);
+            return {...state, todos: filteredTodoState}
         default:
             return todosInitialState;
     }
