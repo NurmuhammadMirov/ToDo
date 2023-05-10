@@ -2,6 +2,8 @@ import * as React from 'react';
 import { TodosContext } from '../context/TodosContext';
 import { Table, Form, Stack, Button } from 'react-bootstrap';
 import useApi from '../hooks/useApi';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 const styles = {
     tableOverflow: {
@@ -25,21 +27,25 @@ const ToDoList = () => {
         dispatch({ type: 'get', payload: savedTodos })
     }, [savedTodos]); // dispatch whoever savedTodos changes
 
-    const handleDelete = (todo, state) => {
+    const handleDelete = async (todo, state) => {
+        await axios.delete(endpoint + todo.id);
         dispatch({ type: 'delete', payload: todo });
         setEditMode(false);
         setTodoText("");
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (!todoText) return; // exit the function if input is empty
         if (editMode) {
+            await axios.patch(endpoint+editTodo.id, {text: todoText});
             dispatch({ type: 'edit', payload: {...editTodo, text: todoText} });
             setEditMode(false);
             setTodoText(null);
         } else {
-            dispatch({ type: 'add', payload: todoText })
+            const newTodo = {id: uuidv4(), text: todoText}
+            await axios.post(endpoint, newTodo);
+            dispatch({ type: 'add', payload: newTodo })
         }
         setTodoText(""); // to clear field after adding
     }

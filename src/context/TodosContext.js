@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 export const TodosContext = React.createContext();
 
@@ -12,9 +11,8 @@ const todosReducer = (state, action) => {
         case 'get':
             return {...state, todos: action.payload}
         case 'add':
-            const newToDo = {id: uuidv4(), text: action.payload};
             // add new todo onto array
-            const addedToDos = [...state.todos, newToDo];
+            const addedToDos = [...state.todos, action.payload];
             // spread our state and assign todos
             return {...state, todos: addedToDos}
         case 'delete':
