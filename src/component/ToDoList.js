@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TodosContext } from '../context/TodosContext';
 import { Table, Form, Stack, Button } from 'react-bootstrap';
+import useApi from '../hooks/useApi';
 
 const styles = {
     tableOverflow: {
@@ -16,6 +17,13 @@ const ToDoList = () => {
     const [editMode, setEditMode] = React.useState(false);
     const [editTodo, setEditTodo] = React.useState(null);
     const buttonTitle = editMode ? "Edit" : "Add";
+
+    const endpoint = "http://localhost:3000/todos/";
+    const savedTodos = useApi(endpoint);
+
+    React.useEffect(() => {
+        dispatch({ type: 'get', payload: savedTodos })
+    }, [savedTodos]); // dispatch whoever savedTodos changes
 
     const handleDelete = (todo, state) => {
         dispatch({ type: 'delete', payload: todo });
