@@ -4,15 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 export const TodosContext = React.createContext();
 
 const todosInitialState = {
-    todos:[
-        {id: 1, text: "finishing writing hooks chapter"},
-        {id: 2, text: "attend chess session"},
-        {id: 3, text: "read book"},
-    ]
+    todos:[]
 };
 
 const todosReducer = (state, action) => {
     switch(action.type) {
+        case 'get':
+            return {...state, todos: action.payload}
         case 'add':
             const newToDo = {id: uuidv4(), text: action.payload};
             // add new todo onto array
