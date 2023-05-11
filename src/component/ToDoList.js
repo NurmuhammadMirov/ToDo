@@ -4,12 +4,17 @@ import { Table, Form, Stack, Button } from 'react-bootstrap';
 import useApi from '../hooks/useApi';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { BiEdit, BiTrash } from 'react-icons/bi';
 
 const styles = {
     tableOverflow: {
         height: '207px',
         overflowY: 'auto',
         overflowX: 'hidden',
+    },
+    addEditBtn: {
+        background: '#FAC607',
+        border: 0,
     }
 }
 
@@ -63,7 +68,7 @@ const ToDoList = () => {
                             value={todoText}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button style={styles.addEditBtn} type='submit'>
                         {buttonTitle}
                     </Button>
                 </Stack>
@@ -87,10 +92,10 @@ const ToDoList = () => {
                                         setEditMode(true)
                                         setEditTodo(todo)
                                     }}>
-                                        Edit
+                                        <BiEdit size={20} color='orange' hover='red' />
                                     </td>
                                     <td onClick={() => handleDelete(todo, state)}>
-                                        Delete
+                                        <BiTrash size={20} color='red' />
                                     </td>
                                 </tr>
                             ))}

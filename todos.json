@@ -1,3 +1,8 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "3448deae-d2ac-44d1-a7af-f699cdcdd869",
+      "text": "Have your dinner before 8:10pm"
+    }
+  ]
 }
