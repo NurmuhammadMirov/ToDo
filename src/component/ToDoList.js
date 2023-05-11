@@ -75,26 +75,26 @@ const ToDoList = () => {
             </Form>
             {state.todos.length === 0 ? null : (
                 <div style={styles.tableOverflow}>
-                    <Table striped bordered hover className='mb-0'>
+                    <Table striped bordered hover className='mb-0' variant="light">
                         <thead>
                             <tr>
                                 <th>To Do</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th style={{ width: '52px', textAlign: 'center' }}>Edit</th>
+                                <th style={{ width: '67px', textAlign: 'center' }}>Delete</th>
                             </tr>
                         </thead>
                         <tbody style={styles.tbody}>
                             {state.todos.map(todo => (
                                 <tr key={todo.id}>
                                     <td>{todo.text}</td>
-                                    <td onClick={() => {
+                                    <td style={{ textAlign: 'center' }} onClick={() => {
                                         setTodoText(todo.text)
                                         setEditMode(true)
                                         setEditTodo(todo)
                                     }}>
                                         <BiEdit size={20} color='orange' hover='red' />
                                     </td>
-                                    <td onClick={() => handleDelete(todo, state)}>
+                                    <td style={{ textAlign: 'center' }} onClick={() => handleDelete(todo, state)}>
                                         <BiTrash size={20} color='red' />
                                     </td>
                                 </tr>
