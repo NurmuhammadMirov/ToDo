@@ -19,11 +19,11 @@ Project is created with:
 * uuid version: 8.3.2
 
 ## Setup
-> this project is using json-server to set up a mock API
-> if you don't have json-server locally you can install it `npm install -g json-server`
-> this project is also using concurrently package `npm install -g concurrently` to run react-script and json-server just by running `npm start`
+> This project is using json-server to set up a mock API.
+> If you don't have json-server locally you can install it by running `npm install -g json-server`,
+> this project is also taking advantage of concurrently package `npm install -g concurrently` to run react-script and json-server just by running `npm start`.
 
-Below packages should installed locally before running `npm start`
+Below packages should be installed locally before running `npm start`
 ```
 npm install -g json-server
 npm install -g concurrently
